@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Daily Planner" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Select Date:" VerticalAlignment="Center" Margin="10"/>
+            <DatePicker x:Name="datePicker" SelectedDateChanged="datePicker_SelectedDateChanged"/>
+        </StackPanel>
+
+        <ListBox x:Name="notesListBox" Grid.Row="1" SelectionChanged="notesListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="10">
+            <TextBox x:Name="titleTextBox" Margin="0 0 0 10" PlaceholderText="Title"/>
+            <TextBox x:Name="descriptionTextBox" AcceptsReturn="True" Margin="0 0 0 10" PlaceholderText="Description"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Add" Click="addNoteButton_Click" Margin="0 0 10 0"/>
+                <Button Content="Update" Click="updateNoteButton_Click" Margin="0 0 10 0"/>
+                <Button Content="Delete" Click="deleteNoteButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
